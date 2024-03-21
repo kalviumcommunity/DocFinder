@@ -7,7 +7,9 @@ import con from "../Assets/Consultdoc.png";
 import care from "../Assets/care.png";
 import best from "../Assets/best.png";
 import Footer from "./Footer";
-import {Router , Routes , Link} from "react-router-dom";
+import user from "../Assets/user-account.png";
+import notify from "../Assets/notify.png";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -23,13 +25,22 @@ function Home() {
             <div className="hidden lg:flex space-x-14">
               <p>Home</p>
               <p>Services</p>
-              <p>Find a Doctor</p>
+              <p>Search</p>
               <p>About Us</p>
             </div>
-            <div>
-              <Link to="/Login"><button className="bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
-                Login
-              </button></Link>
+            <div className="flex flex-row">
+              <div>
+                <button className="text-white font-bold py-2 px-4 text-xl rounded">
+                  <img src={notify} style={{ height: "35px" }} />
+                </button>
+              </div>
+              <Link to="/Login">
+                <div>
+                  <button className="text-white font-bold py-2 px-4 text-xl rounded">
+                    <img src={user} style={{ height: "35px" }} />
+                  </button>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -78,7 +89,6 @@ function Home() {
           </p>
 
           <div className="flex flex-col lg:flex-row justify-between space-y-12 lg:space-y-0 lg:space-x-12">
-
             {/* Step 1 */}
             <div className="bg-white w-full lg:w-[30%] flex flex-col items-center justify-center shadow-inner drop-shadow-lg rounded-xl">
               <img

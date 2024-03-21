@@ -6,11 +6,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-
 function SignUp() {
-
   const navigateto = useNavigate();
-
 
   const {
     register,
@@ -28,8 +25,8 @@ function SignUp() {
       );
       if (response.data.success) {
         toast.success(response.data.message);
-        toast("Redirecting to the Login Page")
-        navigateto("/Login")
+        toast("Redirecting to the Login Page");
+        navigateto("/Login");
       } else {
         toast.error(response.data.message);
       }
@@ -46,6 +43,13 @@ function SignUp() {
           <div className="flex flex-col py-4 ml-40 mr-40">
             <div className="flex items-center justify-between font-poppins">
               <div className="font-bold text-2xl">Healio+</div>
+              <div>
+                <Link to="/Login">
+                  <button className="bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-sm rounded">
+                    Go Back
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
 

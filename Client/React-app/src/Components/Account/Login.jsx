@@ -22,7 +22,7 @@ function Login() {
         toast("Redirecting to the Home Page");
 
         localStorage.setItem("token", response.data.data);
-        navigateto("/");
+        navigateto("/Main");
       } else {
         toast.error(response.data.message);
       }
@@ -40,9 +40,9 @@ function Login() {
             <div className="flex items-center justify-between font-poppins">
               <div className="font-bold text-2xl">Healio+</div>
               <div>
-                <Link to="/SignUp">
-                  <button className="bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
-                    SignUp
+                <Link to="/">
+                  <button className="bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-sm rounded">
+                    Go Back
                   </button>
                 </Link>
               </div>

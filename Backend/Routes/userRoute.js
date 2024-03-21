@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../Models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const authMiddleware = require("../Middlewares/authMiddleware")
 
 router.post("/register", async (req, res) => {
   try {
@@ -63,5 +64,24 @@ router.post("/login", async (req, res) => {
       .send({ message: "Error logginf in", success: false, error });
   }
 });
+
+router.post("/get-user-info-by-id" , authMiddleware, async(req,res) =>{
+  try{
+    const user = await User.findOne({_id: req.body.userId});
+    if(!user){
+      return res.status(200).send({message: "User does not exist", success:false});
+    }else{
+      res.status(200).send({message:"user found", success:true , data: {
+        name:user.name,
+        email:user.email,
+      }})
+    }
+  }
+  catch(error){
+    return res.status(500).send({message: "Error getting in the backend" , success:false ,error})
+  }
+});
+
+
 
 module.exports = router;

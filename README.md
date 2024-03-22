@@ -1,6 +1,6 @@
-# DocFinder
+# Healio+
 
-DocFinder is a doctor appointment booking website designed to streamline the process of finding and scheduling medical appointments for both patients and healthcare providers.
+Healio is a doctor appointment booking website designed to streamline the process of finding and scheduling medical appointments for both patients and healthcare providers.
 
 ## Key Features:
 

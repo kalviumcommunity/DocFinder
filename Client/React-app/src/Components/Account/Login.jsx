@@ -1,23 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import {useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../Redux/LoaderReducer";
+import { HideLogin, ShowLogin } from "../../Redux/AuthenticateReducer";
 
 function Login() {
   const dispatch = useDispatch();
   const navigateto = useNavigate();
-
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
 
   const onSubmit = async (values) => {
     try {
@@ -27,14 +26,17 @@ function Login() {
       const response = await axios.post("http://localhost:4000/login", values);
 
       dispatch(HideLoading());
+      dispatch(HideLogin());
 
       if (response.data.success) {
         toast.success(response.data.message);
         toast("Redirecting to the Home Page");
         localStorage.setItem("token", response.data.data);
-        navigateto("/Main");
+        // console.log()
+        navigateto("/");
       } else {
         toast.error(response.data.message);
+        dispatch(ShowLogin());
       }
     } catch (error) {
       console.log(error);

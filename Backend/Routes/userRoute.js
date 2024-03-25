@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
     console.log(error);
     res
       .status(500)
-      .send({ message: "Error logginf in", success: false, error });
+      .send({ message: "Error logging in", success: false, error });
   }
 });
 

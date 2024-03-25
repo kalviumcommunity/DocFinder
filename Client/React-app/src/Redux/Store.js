@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { LoaderSlice } from "./LoaderReducer";
 import { combineReducers } from "@reduxjs/toolkit";
+import { LoaderSlice } from "./LoaderReducer";
+import {AuthSlice} from "./AuthenticateReducer";
+
 
 const rootReducer = combineReducers({
   loader: LoaderSlice.reducer,
+  isAuthenticated: AuthSlice.reducer,
 });
 
 const store = configureStore({

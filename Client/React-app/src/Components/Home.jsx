@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img from "../Assets/img.png";
 import doc from "../Assets/Finddoc.png";
 import arrow from "../Assets/right-arrow.png";
@@ -10,8 +10,46 @@ import Footer from "./Footer";
 import user from "../Assets/user-account.png";
 import notify from "../Assets/notify.png";
 import { Link } from "react-router-dom";
+import { useSelector , useDispatch } from "react-redux";
+import { HideLogin } from "../Redux/AuthenticateReducer";
+import axios from "axios";
 
 function Home() {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.isAuthenticated);
+  const [data , setdata] = useState();
+
+  useEffect(()=> {
+    const token = localStorage.getItem('token')
+    console.log(token)
+    if(token){
+      dispatch(HideLogin());
+    }
+  })
+
+  const getData = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/get-user-info-by-id",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log(response.data.name);
+      setdata(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+
   return (
     <>
       <div className="mx-auto max-w-screen-xl px-4 lg:px-0">
@@ -29,18 +67,33 @@ function Home() {
               <p>About Us</p>
             </div>
             <div className="flex flex-row">
-              <div>
-                <button className="text-white font-bold py-2 px-4 text-xl rounded">
-                  <img src={notify} style={{ height: "35px" }} />
-                </button>
-              </div>
-              <Link to="/Login">
-                <div>
-                  <button className="text-white font-bold py-2 px-4 text-xl rounded">
-                    <img src={user} style={{ height: "35px" }} />
-                  </button>
+              {console.log(isAuthenticated)}
+              {isAuthenticated ? (
+                <div className="flex flex-row">
+                  <div>
+                    <button className="text-white font-bold py-2 px-4 text-xl rounded">
+                      <img src={notify} style={{ height: "35px" }} />
+                    </button>
+                  </div>
+                  <Link to="/Profile">
+                    <div>
+                      <button className="text-white font-bold py-2 px-4 text-xl rounded">
+                        <img src={user} style={{ height: "35px" }} />
+                      </button>
+                      {/* {data.name} */}
+                    </div>
+                  </Link>
+
                 </div>
-              </Link>
+              ) : (
+                <Link to="/Login">
+                  <div>
+                    <button className="bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
+                      Login
+                    </button>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
         </div>

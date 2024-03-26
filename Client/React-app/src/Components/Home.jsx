@@ -10,22 +10,22 @@ import Footer from "./Footer";
 import user from "../Assets/user-account.png";
 import notify from "../Assets/notify.png";
 import { Link } from "react-router-dom";
-import { useSelector , useDispatch } from "react-redux";
-import { HideLogin } from "../Redux/AuthenticateReducer";
+import { useSelector, useDispatch } from "react-redux";
+import { SetAuthenticated } from "../Redux/AuthenticateReducer";
 import axios from "axios";
 
 function Home() {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.isAuthenticated);
-  const [data , setdata] = useState();
+  const [data, setdata] = useState();
 
-  useEffect(()=> {
-    const token = localStorage.getItem('token')
-    console.log(token)
-    if(token){
-      dispatch(HideLogin());
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    // console.log(token)
+    if (token) {
+      dispatch(SetAuthenticated());
     }
-  })
+  });
 
   const getData = async () => {
     try {
@@ -48,7 +48,6 @@ function Home() {
   useEffect(() => {
     getData();
   }, []);
-
 
   return (
     <>
@@ -83,7 +82,6 @@ function Home() {
                       {/* {data.name} */}
                     </div>
                   </Link>
-
                 </div>
               ) : (
                 <Link to="/Login">

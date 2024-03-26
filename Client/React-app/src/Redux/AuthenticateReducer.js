@@ -6,15 +6,15 @@ export const AuthSlice = createSlice({
     isAuthenticated : false,
   },
   reducers: {
-    ShowLogin: (state) => {
+    SetUnauthenticated: (state) => {
       state.isAuthenticated = false;
     },
-    HideLogin: (state) => {
+    SetAuthenticated: (state) => {
       state.isAuthenticated = true;
     },
   }, 
 });
  
-export const { ShowLogin, HideLogin } = AuthSlice.actions;
+export const { SetUnauthenticated , SetAuthenticated } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

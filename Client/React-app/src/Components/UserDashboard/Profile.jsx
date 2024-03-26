@@ -1,19 +1,12 @@
 import React from "react";
+import Layout from "./Layout";
 
 function Profile() {
   return (
     <div>
-      <div>
-        <div className="font-poppins text-4xl text-center my-10">
-          Welcome User!
-        </div>
-      </div>
-      <div className=" mx-40 max-w-auto text-2xl font-poppins">
-        <div className="flex flex-row justify-between items-center">
-          <div>Appointments</div>
-          <div>Apply for Doctor</div>
-        </div>
-      </div>
+      <Layout>
+        <h1 className="font-poppins text-5xl">HomePage helloo hiiiiiiiii</h1>
+      </Layout>
     </div>
   );
 }

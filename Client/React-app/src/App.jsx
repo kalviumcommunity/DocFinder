@@ -9,13 +9,14 @@ import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { HashLoader } from "react-spinners";
 import Profile from "./Components/UserDashboard/Profile";
+import Layout from "./Components/UserDashboard/Layout";
 
 function App() {
   const { loading } = useSelector((state) => state.loader);
 
   return (
     <>
-      {loading && (
+      {/* {loading && (
         <div className="spinner flex justify-center items-center h-screen">
           <HashLoader color="#36d7b7" className="h-16" />
         </div>
@@ -27,7 +28,9 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Profile" element={<Profile />} />
-      </Routes>
+      </Routes> */}
+      <Profile/>
+      {/* <Layout /> */}
     </>
   );
 }

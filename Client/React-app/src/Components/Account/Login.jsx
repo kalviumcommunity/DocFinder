@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import {useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../Redux/LoaderReducer";
-import { HideLogin, ShowLogin } from "../../Redux/AuthenticateReducer";
+import {SetAuthenticated, SetUnauthenticated} from "../../Redux/AuthenticateReducer";
 
 function Login() {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function Login() {
       const response = await axios.post("http://localhost:4000/login", values);
 
       dispatch(HideLoading());
-      dispatch(HideLogin());
+      dispatch(SetAuthenticated());
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -36,7 +36,7 @@ function Login() {
         navigateto("/");
       } else {
         toast.error(response.data.message);
-        dispatch(ShowLogin());
+        dispatch(SetUnauthenticated());
       }
     } catch (error) {
       console.log(error);

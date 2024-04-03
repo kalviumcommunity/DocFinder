@@ -77,6 +77,10 @@ router.post("/get-user-info-by-id", authMiddleware, async (req, res) => {
         data: {
           name: user.name,
           email: user.email,
+          isdoctor: user.isdoctor,
+          isadmin: user.isadmin,
+          seenNotifications: user.seenNotifications,
+          unseenNotifications: user.unseenNotifications,
         },
       });
     }

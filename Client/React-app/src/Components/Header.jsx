@@ -1,26 +1,69 @@
-import React from 'react'
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { SetAuthenticated } from "../Redux/AuthenticateReducer";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import user from "../Assets/user-account.png";
 
 function Header() {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.isAuthenticated);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    // console.log(token)
+    if (token) {
+      dispatch(SetAuthenticated());
+    }
+  });
+
   return (
     <>
-    <div className="flex flex-col py-4 ml-40 mr-40">
-        <div className="flex items-center justify-between font-poppins">
-          <div className="font-bold text-2xl">Healio+</div>
-          <div className="flex space-x-14">
-            <p>Home</p>
-            <p>Services</p>
-            <p>Find a Doctor</p>
-            <p>About Us</p>
-          </div>
-          <div>
-            <button className="bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
-              Login
+      <div className="mx-auto max-w-screen-xl px-4 lg:px-0">
+        <div className="flex flex-col py-4">
+          <div className="flex items-center justify-between font-poppins">
+            <div className="font-bold text-2xl">Healio+</div>
+            <button className="lg:hidden bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
+              Menu
             </button>
+            <div className="hidden lg:flex space-x-14">
+              <Link>
+                <p className="cursor-pointer">Home</p>
+              </Link>
+              <Link to="/Services">
+                <p className="cursor-pointer">Services</p>
+              </Link>
+              <p className="cursor-pointer">Search</p>
+              <p className="cursor-pointer">About Us</p>
+            </div>
+            <div className="flex flex-row">
+              {console.log(isAuthenticated)}
+              {isAuthenticated ? (
+                <div className="flex flex-row">
+                  <Link to="/Profile">
+                    <div>
+                      <button className="text-white font-bold py-2 px-4 text-xl rounded">
+                        <img src={user} style={{ height: "35px" }} />
+                      </button>
+                      {/* {data.name} */}
+                    </div>
+                  </Link>
+                </div>
+              ) : (
+                <Link to="/Login">
+                  <div>
+                    <button className="bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
+                      Login
+                    </button>
+                  </div>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
-    </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default Header
+export default Header;

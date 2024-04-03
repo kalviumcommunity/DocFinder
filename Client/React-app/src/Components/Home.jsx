@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import img from "../Assets/img.png";
 import doc from "../Assets/Finddoc.png";
@@ -7,25 +9,12 @@ import con from "../Assets/Consultdoc.png";
 import care from "../Assets/care.png";
 import best from "../Assets/best.png";
 import Footer from "./Footer";
-import user from "../Assets/user-account.png";
-import notify from "../Assets/notify.png";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { SetAuthenticated } from "../Redux/AuthenticateReducer";
+
 import axios from "axios";
+import Header from "./Header";
 
 function Home() {
-  const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.isAuthenticated);
   const [data, setdata] = useState();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    // console.log(token)
-    if (token) {
-      dispatch(SetAuthenticated());
-    }
-  });
 
   const getData = async () => {
     try {
@@ -53,49 +42,7 @@ function Home() {
     <>
       <div className="mx-auto max-w-screen-xl px-4 lg:px-0">
         {/* Header */}
-        <div className="flex flex-col py-4">
-          <div className="flex items-center justify-between font-poppins">
-            <div className="font-bold text-2xl">Healio+</div>
-            <button className="lg:hidden bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
-              Menu
-            </button>
-            <div className="hidden lg:flex space-x-14">
-              <p>Home</p>
-              <p>Services</p>
-              <p>Search</p>
-              <p>About Us</p>
-            </div>
-            <div className="flex flex-row">
-              {console.log(isAuthenticated)}
-              {isAuthenticated ? (
-                <div className="flex flex-row">
-                  <div>
-                    <button className="text-white font-bold py-2 px-4 text-xl rounded">
-                      <img src={notify} style={{ height: "35px" }} />
-                    </button>
-                  </div>
-                  <Link to="/Profile">
-                    <div>
-                      <button className="text-white font-bold py-2 px-4 text-xl rounded">
-                        <img src={user} style={{ height: "35px" }} />
-                      </button>
-                      {/* {data.name} */}
-                    </div>
-                  </Link>
-                </div>
-              ) : (
-                <Link to="/Login">
-                  <div>
-                    <button className="bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
-                      Login
-                    </button>
-                  </div>
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-
+        <Header />
         {/* Info part1 */}
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="py-4 mt-8 lg:mt-16 lg:w-2/3">

@@ -81,7 +81,7 @@ function Home() {
         </div>
 
         {/* Info part2 */}
-        <div className="mt-24 h-screen">
+        <div className="mt-24 h-full">
           <p className="text-3xl lg:text-4xl text-center font-bold font-poppins mb-8">
             Three Steps to Wellness: simple actions, ensuring comprehensive care
           </p>
@@ -160,17 +160,9 @@ function Home() {
         </div>
 
         {/* Section 1 */}
-        <div className=" hidden lg:flex  items-center justify-center h-screen">
-          <div className="flex flex-col items-center justify-center lg:w-3/5">
-            <img
-              src={best}
-              className="rounded-lg"
-              style={{ height: "400px", width: "600px" }}
-              alt="Experience Personalized Care"
-            />
-          </div>
-          <div className="w-full lg:w-2/5 ml-8 text-left">
-            <h1 className="font-poppins font-bold text-3xl mb-8 lg:mb-12">
+        <div className=" hidden lg:flex items-center justify-between p-12">
+          <div className="w-full lg:w-2/5 text-left">
+            <h1 className="font-poppins font-bold text-3xl lg:mb-12">
               Experience Personalized Care
             </h1>
             <p className="font-poppins font-extralight">
@@ -183,12 +175,30 @@ function Home() {
               healthcare needs with excellence and integrity.
             </p>
           </div>
+
+          <div className="flex flex-col">
+            <img
+              src={best}
+              className="rounded-lg"
+              style={{ height: "400px", width: "600px" }}
+              alt="Experience Personalized Care"
+            />
+          </div>
         </div>
 
         {/* Section 2 */}
-        <div className="hidden lg:flex items-center justify-center mt-12 mb-24">
-          <div className="w-full lg:w-2/5 mr-8 text-right">
-            <h1 className="font-poppins font-bold text-4xl mb-8 lg:mb-12">
+        <div className="hidden lg:flex items-center justify-between p-12">
+          <div className="flex flex-col ">
+            <img
+              src={care}
+              className="rounded-lg"
+              style={{ height: "400px", width: "600px" }}
+              alt="Nation's Best Doctors Here"
+            />
+          </div>
+
+          <div className="w-full lg:w-2/5 text-right">
+            <h1 className="font-poppins font-bold text-3xl lg:mb-12">
               Nation's Best Doctors Here
             </h1>
             <p className="font-poppins font-extralight">
@@ -202,14 +212,6 @@ function Home() {
               well-being and dedicated to providing exceptional care at every
               encounter.
             </p>
-          </div>
-          <div className="flex flex-col items-center justify-center lg:w-3/5">
-            <img
-              src={care}
-              className="rounded-lg"
-              style={{ height: "400px", width: "600px" }}
-              alt="Nation's Best Doctors Here"
-            />
           </div>
         </div>
       </div>

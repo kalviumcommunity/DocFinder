@@ -23,11 +23,11 @@ function Header() {
         <div className="flex flex-col py-4">
           <div className="flex items-center justify-between font-poppins">
             <div className="font-bold text-2xl">Healio+</div>
-            <button className="lg:hidden bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
+            {/* <button className="lg:hidden bg-[#37BFC4] hover:bg-[#ff7974] text-white font-bold py-2 px-4 text-xl rounded">
               Menu
-            </button>
+            </button> */}
             <div className="hidden lg:flex space-x-14">
-              <Link>
+              <Link to="/">
                 <p className="cursor-pointer">Home</p>
               </Link>
               <Link to="/Services">

@@ -35,14 +35,12 @@ function Sidebar() {
               </div>
             </div>
 
-            <div className="mt-2 flex p-2 hover:border hover:border-b-2 rounded-lg hover:border-white">
+            {/* <div className="mt-2 flex p-2 hover:border hover:border-b-2 rounded-lg hover:border-white">
               <div className="flex flex-row items-center cursor-pointer">
                 <img src={doctor} alt="Doctor" className="h-8 mr-2" />
                 <p className="text-white ml-2">Profiles</p>
               </div>
-            </div>
-
-
+            </div> */}
           </div>
 
           <div className="ml-6 mt-80 ">

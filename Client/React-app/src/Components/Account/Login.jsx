@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import {useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../Redux/LoaderReducer";
-import {SetAuthenticated, SetUnauthenticated} from "../../Redux/AuthenticateReducer";
+import {
+  SetAuthenticated,
+  SetUnauthenticated,
+} from "../../Redux/AuthenticateReducer";
 
 function Login() {
   const dispatch = useDispatch();
@@ -20,7 +23,7 @@ function Login() {
 
   const onSubmit = async (values) => {
     try {
-      console.log(values);
+      // console.log(values);
       dispatch(ShowLoading());
 
       const response = await axios.post("http://localhost:4000/login", values);
@@ -32,7 +35,6 @@ function Login() {
         toast.success(response.data.message);
         toast("Redirecting to the Home Page");
         localStorage.setItem("token", response.data.data);
-        // console.log()
         navigateto("/");
       } else {
         toast.error(response.data.message);

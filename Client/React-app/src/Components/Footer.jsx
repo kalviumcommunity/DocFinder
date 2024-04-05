@@ -11,7 +11,7 @@ import logo from "../Assets/logo.png";
 const Footer = () => {
   return (
     <footer className="bg-slate-50 text-[#37BFC4] font-poppins">
-      <hr className="mb-10" />
+      <hr className="mb-10 mt-10" />
       <div className="mx-auto flex flex-wrap items-center">
         <div className="w-full md:w-1/4 text-center mb-8 md:mb-0">
           <div className="flex flex-col items-center justify-center">

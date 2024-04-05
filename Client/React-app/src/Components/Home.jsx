@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import img from "../Assets/img.png";
 import doc from "../Assets/Finddoc.png";
 import arrow from "../Assets/right-arrow.png";
@@ -9,35 +10,10 @@ import con from "../Assets/Consultdoc.png";
 import care from "../Assets/care.png";
 import best from "../Assets/best.png";
 import Footer from "./Footer";
-
 import axios from "axios";
 import Header from "./Header";
 
 function Home() {
-  const [data, setdata] = useState();
-
-  const getData = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/get-user-info-by-id",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
-      console.log(response.data.name);
-      setdata(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <>
       <div className="mx-auto max-w-screen-xl px-4 lg:px-0">

@@ -18,7 +18,7 @@ function Services() {
           Our Medical Services
         </div>
 
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid gap:10 lg:grid lg:grid-cols-3 lg:gap-10">
           {/* Neurology */}
           <div className="bg-[#37BFC4] h-60 w-fit border rounded-lg justify-self-center">
             <img src={neuro} className="h-48 w-72 rounded-t-lg " />
@@ -28,7 +28,7 @@ function Services() {
                 <p className="text-white text-lg font-poppins p-2">Neurology</p>
               </div>
               <div className="p-2">
-                <button className="p-2 border rounded-full transition-colors duration-200 hover:bg-white">
+                <button className="p-2 border border-white rounded-full transition-colors duration-200 hover:bg-white">
                   <img src={arrow} className="h-4" alt="Arrow" />
                 </button>
               </div>

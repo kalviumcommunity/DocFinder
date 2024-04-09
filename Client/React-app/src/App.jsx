@@ -10,8 +10,11 @@ import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { HashLoader } from "react-spinners";
 import Profile from "./Components/UserDashboard/Profile";
-import Layout from "./Components/UserDashboard/Content";
 import Services from "./Components/Services/Services";
+import Adminusers from "./Components/UserDashboard/DashboardContent/AdminUsers";
+import Admindoctors from "./Components/UserDashboard/DashboardContent/AdminDoctors";
+import AdminConsult from "./Components/UserDashboard/DashboardContent/AdminConsult";
+import ApplyDoctor from "./Components/UserDashboard/DashboardContent/ApplyDoctor";
 
 function App() {
   const { loading } = useSelector((state) => state.loader);
@@ -31,6 +34,39 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Services" element={<Services />} />
+        <Route
+          path="/Allusers"
+          element={
+            <Profile>
+              <Adminusers />
+            </Profile>
+          }
+        />
+        <Route
+          path="/Alldoctors"
+          element={
+            <Profile>
+              <Admindoctors />
+            </Profile>
+          }
+        />
+        <Route
+          path="/Allconsult"
+          element={
+            <Profile>
+              <AdminConsult />
+            </Profile>
+          }
+        />
+
+        <Route
+          path="/ApplyDoc"
+          element={
+            <Profile>
+              <ApplyDoctor />
+            </Profile>
+          }
+        />
       </Routes>
     </>
   );

@@ -23,7 +23,6 @@ function Login() {
 
   const onSubmit = async (values) => {
     try {
-      // console.log(values);
       dispatch(ShowLoading());
 
       const response = await axios.post("http://localhost:4000/login", values);
@@ -33,7 +32,7 @@ function Login() {
 
       if (response.data.success) {
         toast.success(response.data.message);
-        toast("Redirecting to the Home Page");
+        toast.success("Redirecting to the Home Page");
         localStorage.setItem("token", response.data.data);
         navigateto("/");
       } else {

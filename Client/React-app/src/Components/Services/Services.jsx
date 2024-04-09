@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Header";
 import neuro from "../../Assets/Neurology.png";
 import arrow from "../../Assets/right-arrow.png";
@@ -8,10 +8,21 @@ import derma from "../../Assets/Derma.png";
 import gynac from "../../Assets/Gynaecology.png";
 import mind from "../../Assets/Mental.png";
 import Footer from "../Footer";
+import {useDispatch} from "react-redux";
+import { HideLoading, ShowLoading } from "../../Redux/LoaderReducer";
+import toast from "react-hot-toast";
 
 function Services() {
+  // const dispatch = useDispatch();
+  // useEffect(()=>{
+  //   dispatch(ShowLoading());
+  //   setTimeout(()=>{
+  //     dispatch(HideLoading());
+  //   },1000)
+  // },[])
   return (
     <>
+
       <div className="mx-auto mt-4 max-w-screen-xl px-4 mb-28">
         <Header />
         <div className="text-3xl font-poppins mt-10 text-center mb-20">

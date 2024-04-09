@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { SetAuthenticated } from "../Redux/AuthenticateReducer";
+import { SetAuthenticated, SetUnauthenticated } from "../Redux/AuthenticateReducer";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import user from "../Assets/user-account.png";
@@ -11,7 +11,6 @@ function Header() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    // console.log(token)
     if (token) {
       dispatch(SetAuthenticated());
     }
@@ -37,7 +36,7 @@ function Header() {
               <p className="cursor-pointer">About Us</p>
             </div>
             <div className="flex flex-row">
-              {console.log(isAuthenticated)}
+              {/* {console.log(isAuthenticated)} */}
               {isAuthenticated ? (
                 <div className="flex flex-row">
                   <Link to="/Profile">

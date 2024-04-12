@@ -36,7 +36,7 @@ function Sidebar({ data, setActivePage}) {
   };
 
   return (
-    <div>
+    <div className="sticky top-0 h-screen">
       <div className="flex justify-center items-center h-screen w-72">
         <div className=" flex flex-col rounded-2xl bg-[#37BFC4] h-[96%] w-64 font-poppins">
           

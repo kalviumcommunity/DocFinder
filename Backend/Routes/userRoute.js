@@ -4,6 +4,7 @@ const User = require("../Models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../Middlewares/authMiddleware");
+const Doctor = require("../Models/DoctorModel")
 
 router.post("/register", async (req, res) => {
   try {
@@ -90,5 +91,33 @@ router.post("/get-user-info-by-id", authMiddleware, async (req, res) => {
       .send({ message: "Error getting in the backend", success: false, error });
   }
 });
+
+router.post("/apply-doctor-account", authMiddleware, async (req, res) => {
+  try {
+    const newdoctor = new Doctor({ ...req.body, status: "pending" });
+    console.log(newdoctor)
+    await newdoctor.save();
+    const adminUser = await User.findOne({ isadmin: true });  
+
+    const unseenNotifications = adminUser.unseenNotifications;
+    unseenNotifications.push(
+      {
+        type: 'Doctor-Approval-Pending',
+        message: `${newdoctor.firstname} ${newdoctor.lastname} has applied for a doctor account`,
+        data: {
+          doctorId: newdoctor._id,
+          name: newdoctor.firstname + " " + newdoctor.lastname,
+        },
+        onClickPath: '/admin/doctors'
+      })
+      await User.findByIdAndUpdate(adminUser._id, {unseenNotifications});
+      res.status(200).send({message:"Doctor Application Submitted Successfully",success: true});
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error Applying as a Doctor", success: false });
+  }
+});
+
 
 module.exports = router;

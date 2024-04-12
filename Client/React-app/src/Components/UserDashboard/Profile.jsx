@@ -66,7 +66,7 @@ function Profile() {
     <>
       <div className="flex">
         <div>
-         <Sidebar data={data} activePage={activePage} setActivePage={setActivePage} />
+         <Sidebar data={data} activePage={activePage} setActivePage={setActivePage} className="sticky"/>
         </div>
 
         <div className="w-full">

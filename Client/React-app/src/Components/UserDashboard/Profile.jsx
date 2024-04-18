@@ -1,9 +1,4 @@
 import React from "react";
-import schedule from "../../Assets/schedule.png";
-import doctor from "../../Assets/doctor.png";
-import logout from "../../Assets/logout.png";
-import notify from "../../Assets/bell.png";
-import home from "../../Assets/home.png";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { useState, useEffect } from "react";
@@ -22,7 +17,7 @@ function Profile() {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.isAuthenticated);
 
-  const [activePage, setActivePage] = useState("");
+  const [activePage, setActivePage] = useState( localStorage.getItem("activePage") || "");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -31,7 +26,7 @@ function Profile() {
     }
     dispatch(ShowLoading());
     setTimeout(() => {
-      toast("View your profile");
+      // toast("View your profile");
       dispatch(HideLoading());
     }, 500);
   }, []);
@@ -40,9 +35,8 @@ function Profile() {
     if (isAuthenticated) {
       const getData = async () => {
         try {
-          const response = await axios.post(
-            "http://localhost:4000/get-user-info-by-id",
-            {},
+          const response = await axios.get(
+            "http://localhost:4000/user-info-by-id",
             {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),
@@ -59,22 +53,22 @@ function Profile() {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    localStorage.setItem("activePage" , activePage);
+  }, [activePage]);
 
   return (
     <>
       <div className="flex">
         <div>
-         <Sidebar data={data} activePage={activePage} setActivePage={setActivePage} className="sticky"/>
+         <Sidebar data={data} activePage={activePage} setActivePage={setActivePage} key={activePage}/>
         </div>
 
         <div className="w-full">
           <Header data={data} />
-          {activePage === "AdminUsers" && <Adminusers/>}
-          {activePage === "AdminDoctors" && <Admindoctors/>}
-          {activePage === "AdminConsult" && <AdminConsult/>}
-          {activePage === "ApplyDoctor" && <ApplyDoctor/>}
+          {activePage === "AdminUsers" && <Adminusers data={data}/>}
+          {activePage === "AdminDoctors" && <Admindoctors data={data}/>}
+          {activePage === "AdminConsult" && <AdminConsult data={data}/>}
+          {activePage === "ApplyDoctor" && <ApplyDoctor data={data}/>}
         </div>
       </div>
     </>

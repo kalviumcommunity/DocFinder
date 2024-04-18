@@ -64,7 +64,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/get-user-info-by-id", authMiddleware, async (req, res) => {
+router.get("/user-info-by-id", authMiddleware, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.body.userId });
     if (!user) {
@@ -94,9 +94,21 @@ router.post("/get-user-info-by-id", authMiddleware, async (req, res) => {
 
 router.post("/apply-doctor-account", authMiddleware, async (req, res) => {
   try {
+    //Checking Existing doctor
+    const {email} = req.body;
+    const existingDoctor = await Doctor.findOne({
+      email,
+    })
+
+    if(existingDoctor){
+      return res.status(200).send({exists: true});
+    } 
+    
+    else {
     const newdoctor = new Doctor({ ...req.body, status: "pending" });
     console.log(newdoctor)
     await newdoctor.save();
+
     const adminUser = await User.findOne({ isadmin: true });  
 
     const unseenNotifications = adminUser.unseenNotifications;
@@ -112,6 +124,7 @@ router.post("/apply-doctor-account", authMiddleware, async (req, res) => {
       })
       await User.findByIdAndUpdate(adminUser._id, {unseenNotifications});
       res.status(200).send({message:"Doctor Application Submitted Successfully",success: true});
+    }
 
   } catch (error) {
     console.log(error);

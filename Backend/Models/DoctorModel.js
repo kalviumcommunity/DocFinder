@@ -43,6 +43,10 @@ const doctorSchema = new Schema(
             type:Number,
             required: true,
         },
+        calEventypeLink: {
+            type:String,
+            required: true,
+        },
         fromTime: {
             type:String,
             required:true,
@@ -54,7 +58,7 @@ const doctorSchema = new Schema(
         status: {
             type: String,
             default: "pending",
-        }
+        },
     }, 
     {
         timestamps: true,

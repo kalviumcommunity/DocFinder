@@ -7,6 +7,10 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../Redux/LoaderReducer";
+import {
+  SetAuthenticated,
+  SetUnauthenticated,
+} from "../../Redux/AuthenticateReducer";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -29,6 +33,7 @@ function SignUp() {
         values
       );
 
+      dispatch(SetAuthenticated());
       dispatch(HideLoading());
 
       if (response.data.success) {

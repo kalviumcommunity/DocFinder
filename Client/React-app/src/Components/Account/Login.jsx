@@ -27,8 +27,8 @@ function Login() {
 
       const response = await axios.post("http://localhost:4000/login", values);
 
-      dispatch(HideLoading());
       dispatch(SetAuthenticated());
+      dispatch(HideLoading());
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -37,10 +37,11 @@ function Login() {
         navigateto("/");
       } else {
         toast.error(response.data.message);
-        dispatch(SetUnauthenticated());
       }
     } catch (error) {
       console.log(error);
+      dispatch(SetUnauthenticated());
+      dispatch(HideLoading());
       toast.error("Something went wrong");
     }
   };
@@ -70,27 +71,6 @@ function Login() {
               className="w-full max-w-sm font-poppins"
               onSubmit={handleSubmit(onSubmit)}
             >
-              <div className="mb-4 mt-2">
-                <input
-                  type="text"
-                  id="name"
-                  name="Name"
-                  placeholder="Name"
-                  className="border border-b-4 border-b-[#37BFC4] focus:border focus:border-zinc-500 focus:border-b-4 focus:border-b-[#267c7e] rounded w-full py-3 px-3 text-black focus:outline-none focus:shadow-outline"
-                  {...register("name", {
-                    required: "Name is required",
-                    minLength: {
-                      value: 3,
-                      message: "Name must be at least 3 characters long",
-                    },
-                  })}
-                />
-
-                {errors.name && (
-                  <p className="errorMsg">{errors.name.message}</p>
-                )}
-              </div>
-
               <div className="mb-4">
                 <input
                   type="email"

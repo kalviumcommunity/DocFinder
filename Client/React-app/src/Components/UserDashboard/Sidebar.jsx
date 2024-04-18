@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../Redux/LoaderReducer";
 import toast from "react-hot-toast";
 
-function Sidebar({ data, setActivePage}) {
+function Sidebar({ data, setActivePage }) {
   const navigateto = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,50 +39,62 @@ function Sidebar({ data, setActivePage}) {
     <div className="sticky top-0 h-screen">
       <div className="flex justify-center items-center h-screen w-72">
         <div className=" flex flex-col rounded-2xl bg-[#37BFC4] h-[96%] w-64 font-poppins">
-          
           <div className="flex flex-col items-center">
-            <div>
-              <img src={logo} className="h-16 w-16 mt-10" />
+            <div className="flex flex-row items-center pt-8">
+              <div>
+                <img src={logo} className="h-10 w-10" />
+              </div>
+              <div className="text-2xl text-left font-bold text-white p-4">
+                Healio
+              </div>
             </div>
-            <div className="text-4xl text-left font-bold text-white p-4">
-              Healio
-            </div>
-            {/* <hr className="border-t-2 border-gray-300" /> */}
-            <div className="text-lg text-white font-bold p-2">
-              {data.isdoctor ? "Doctor" : data.isadmin ? "Admin" : "User"}
+
+            <hr className="border-t-2 border-gray-300" />
+            <div className="text-base text-white font-light">
+              {data.isdoctor ? "Role : Doctor" : data.isadmin ? "Role : Admin" : "Role : User"}
             </div>
           </div>
 
           {data.isadmin ? (
             <div className="ml-2 mt-10 mr-2">
-
-              <Link to='/Allusers' data={data} onClick={() => setActivePage("AdminUsers")}>
-              <div className=" mt-2 flex p-2 hover:border rounded-lg hover:border-white">
-                <div className="flex flex-row items-center justify-center cursor-pointer">
-                  <img src={users} alt="Schedule" className="h-8 mr-2" />
-                  <p className="text-white ml-2">Manage Users</p>
+              <Link
+                to="/Allusers"
+                data={data}
+                onClick={() => setActivePage("AdminUsers")}
+              >
+                <div className=" mt-2 flex p-2 hover:border rounded-lg hover:border-white">
+                  <div className="flex flex-row items-center justify-center cursor-pointer">
+                    <img src={users} alt="Schedule" className="h-8 mr-2" />
+                    <p className="text-white ml-2">Manage Users</p>
+                  </div>
                 </div>
-              </div>
               </Link>
 
-              <Link to='/Alldoctors' data={data} onClick={() => setActivePage("AdminDoctors")}>
-              <div className="mt-2 flex p-2 hover:border rounded-lg hover:border-white">
-                <div className="flex flex-row items-center cursor-pointer">
-                  <img src={doctors} alt="Doctor" className="h-8 mr-2" />
-                  <p className="text-white ml-2">Manage Doctors</p>
+              <Link
+                to="/Alldoctors"
+                data={data}
+                onClick={() => setActivePage("AdminDoctors")}
+              >
+                <div className="mt-2 flex p-2 hover:border rounded-lg hover:border-white">
+                  <div className="flex flex-row items-center cursor-pointer">
+                    <img src={doctors} alt="Doctor" className="h-8 mr-2" />
+                    <p className="text-white ml-2">Manage Doctors</p>
+                  </div>
                 </div>
-              </div>
               </Link>
 
-              <Link to='/Allconsult' data={data} onClick={() => setActivePage("AdminConsult")}>
-              <div className="mt-2 flex p-2 hover:border rounded-lg hover:border-white">
-                <div className="flex flex-row items-center cursor-pointer">
-                  <img src={consult} alt="Doctor" className="h-8 mr-2" />
-                  <p className="text-white ml-2">Manage Consultations</p>
+              <Link
+                to="/Allconsult"
+                data={data}
+                onClick={() => setActivePage("AdminConsult")}
+              >
+                <div className="mt-2 flex p-2 hover:border rounded-lg hover:border-white">
+                  <div className="flex flex-row items-center cursor-pointer">
+                    <img src={consult} alt="Doctor" className="h-8 mr-2" />
+                    <p className="text-white ml-2">Manage Consultations</p>
+                  </div>
                 </div>
-              </div>
               </Link>
-
             </div>
           ) : data.isdoctor ? (
             <div className="ml-2 mt-10 mr-2">
@@ -108,37 +120,40 @@ function Sidebar({ data, setActivePage}) {
               </div>
             </div>
           ) : (
-            <div className="ml-2 mt-10 mr-2">
-              <div className="mt-2 flex p-2 hover:border rounded-lg hover:border-white">
-                <div className="flex flex-row items-center cursor-pointer">
-                  <img src={consult} alt="Doctor" className="h-8 mr-2" />
-                  <p className="text-white ml-2">Book a Consultation</p>
-                </div>
-              </div>
-
+            <div className="ml-4 mt-10 mr-2">
               <div className=" mt-2 flex p-2 hover:border rounded-lg hover:border-white">
                 <div className="flex flex-row items-center justify-center cursor-pointer">
-                  <img src={appoint} alt="Schedule" className="h-8 mr-2" />
+                  <img src={appoint} alt="Schedule" className="h-6 mr-2 " />
                   <p className="text-white ml-2">My Appointments</p>
                 </div>
               </div>
 
-              <Link  to='/ApplyDoc' data={data} onClick={() => setActivePage("ApplyDoctor")}>
-              <div className="mt-2 flex p-2 hover:border  rounded-lg hover:border-white">
+              <div className="mt-2 flex p-2 hover:border rounded-lg hover:border-white">
                 <div className="flex flex-row items-center cursor-pointer">
-                  <img src={doctors} alt="Doctor" className="h-8 mr-2" />
-                  <p className="text-white ml-2">Apply as a doctor</p>
+                  <img src={consult} alt="Doctor" className="h-6 mr-2" />
+                  <p className="text-white ml-2">Book a Consultation</p>
                 </div>
               </div>
-              </Link>
-
 
               <div className="mt-2 flex p-2 hover:border  rounded-lg hover:border-white">
                 <div className="flex flex-row items-center cursor-pointer">
-                  <img src={users} alt="Doctor" className="h-8 mr-2" />
+                  <img src={users} alt="Doctor" className="h-6 mr-2" />
                   <p className="text-white ml-2">Personal Profile</p>
                 </div>
               </div>
+
+              <Link
+                to="/ApplyDoc"
+                data={data}
+                onClick={() => setActivePage("ApplyDoctor")}
+              >
+                <div className="mt-2 flex p-2 hover:border  rounded-lg hover:border-white">
+                  <div className="flex flex-row items-center cursor-pointer">
+                    <img src={doctors} alt="Doctor" className="h-6 mr-2" />
+                    <p className="text-white ml-2">Apply as a doctor</p>
+                  </div>
+                </div>
+              </Link>
             </div>
           )}
 
